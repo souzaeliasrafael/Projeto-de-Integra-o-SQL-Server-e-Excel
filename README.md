@@ -82,7 +82,7 @@ Após a criação da view VENDAS, os dados foram importados para o Excel utiliza
 
 ## Dashboard Resultante
 
-![Dashboard de Vendas](dashboard.png)
+![Dashboard de Vendas](img/dashboard_completo.png)
 
 Screenshots e Exemplos
 
