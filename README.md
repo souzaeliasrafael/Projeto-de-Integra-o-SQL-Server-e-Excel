@@ -27,31 +27,53 @@ DimProduct: Contém informações sobre os produtos.
 Para facilitar a análise dos dados, foi criada a view VENDAS com as seguintes colunas:
 
 ```sql
-CREATE OR ALTER VIEW VENDAS AS
 SELECT
-    f.SalesOrderNumber AS 'Numero do Pedido',
-    f.OrderDate AS 'Data do Pedido',
-    pc.EnglishProductCategoryName AS 'Categoria ',
-    c.FirstName + ' ' + c.LastName AS 'Nome do Cliente',
-    c.Gender AS 'Sexo',
-    st.SalesTerritoryCountry 'País',
-    f.OrderQuantity 'Quantidade Vendida',
-    f.TotalProductCost AS 'Custo Total do Produto',
-    f.SalesAmount AS 'Receita da Venda'
+	*
+FROM 
+	VENDAS
+
+CREATE OR ALTER VIEW VENDAS AS 
+SELECT
+	StandardCost AS 'CUSTO',
+	EnglishProductCategoryName 'CATEGORIA_PRODUTO',
+	OrderQuantity AS 'ORDEM_QUANTIDADE',
+	SalesAmount AS 'QUANTIDADE_VENDIDA',
+	OrderDate AS 'DATA_VENDA',
+	SalesOrderNumber AS 'NUMERO_ORDEM',
+	CONCAT(FirstName, ' ', LastName) AS 'CLIENTE',
+	SalesTerritoryCountry 'PAIS',
+
+	CASE Gender
+	WHEN 'M' THEN 'MASCULINO'
+	WHEN 'F' THEN 'FEMININO'
+	ELSE 'NÃO IDENTIFICADO'
+	END AS 'GENERO'
+
 FROM
-    FactInternetSales AS f
-JOIN
-    DimCustomer AS c ON f.CustomerKey = c.CustomerKey
-JOIN
-    DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey
-JOIN
-    DimProduct AS p ON f.ProductKey = p.ProductKey
-JOIN
-    DimProductSubcategory AS ps ON p.ProductSubcategoryKey = ps.ProductSubcategoryKey
-JOIN
-    DimProductCategory AS pc ON ps.ProductCategoryKey = pc.ProductCategoryKey;
-
-
+	DimProduct
+INNER JOIN
+	DimProductSubcategory
+ON
+	DimProduct.ProductSubcategoryKey = DimProductSubcategory.ProductSubcategoryKey
+INNER JOIN
+	DimProductCategory
+ON
+	DimProductSubcategory.ProductCategoryKey = DimProductCategory.ProductCategoryKey
+INNER JOIN
+	FactInternetSales
+ON
+	DimProduct.ProductKey = FactInternetSales.ProductKey
+INNER JOIN
+	DimCustomer
+ON
+	FactInternetSales.CustomerKey = DimCustomer.CustomerKey
+INNER JOIN
+	DimSalesTerritory
+ON
+	FactInternetSales.SalesTerritoryKey = DimSalesTerritory.SalesTerritoryKey
+WHERE
+	StandardCost IS NOT NULL AND
+	YEAR(OrderDate) = '2013'
 ```
 
 ## Integração com o Excel
@@ -82,7 +104,7 @@ Vendas por Gênero
 
 ![Vendas por Gênero](vendas_por_genero.png)
 
-Conclusão
+## Conclusão
 
 Este trabalho demonstra como integrar dados do SQL Server com o Excel para a análise eficaz das vendas, proporcionando insights valiosos para a tomada de decisões. O uso da view VENDAS simplificou o processo de extração de dados e permitiu uma análise mais ágil e visual no Excel.
 Através da análise de vendas da AdventureWorks Cycles, podemos extrair alguns insights importantes:
@@ -91,16 +113,3 @@ Tendências de vendas ao longo do tempo: Ao analisar a receita total online por 
 Análise de vendas por país: Ao analisar a receita e o custo total online por país, podemos identificar quais países têm o maior volume de vendas e onde os recursos estão sendo investidos proporcionalmente. Isso permite uma alocação de recursos mais eficiente e a identificação de mercados que podem ser promissores para expansão.
 Segmentação do mercado por sexo do cliente: Ao analisar o total de vendas online por sexo do cliente, podemos identificar diferenças no comportamento de compra entre homens e mulheres. Essas informações são valiosas para personalização de marketing e campanhas direcionadas.
 Esses são apenas alguns exemplos dos dados relevantes que podem ser extraídos da análise de vendas da AdventureWorks Cycles. Com base nesses insights, é possível tomar decisões informadas para impulsionar o crescimento e o sucesso do negócio.
-
-Como visualizar o código
-
-1. Clone o repositório:
-
-    git clone https://github.com/seu_usuario/nome_do_repositorio.git
-
-    
-2. Abra o projeto no seu editor de preferência.
-
-3. Siga as instruções no arquivo README para configurar o ambiente e executar as queries.
-
-Ao disponibilizar os códigos SQL e o dashboard, o seu portfólio GitHub se tornará uma ótima referência para as suas habilidades em SQL e análise de dados. Boa sorte com sua apresentação!
