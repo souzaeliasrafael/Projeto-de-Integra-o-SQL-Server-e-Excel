@@ -1,4 +1,4 @@
-# Projeto de Integração SQL Server e Excel: Análise de Vendas da AdventureWorks Cycles
+# Análise de vendas - SQL, Excel, Tabelas dinâmicas e Dashboard
 
 ## Apresentação
 
