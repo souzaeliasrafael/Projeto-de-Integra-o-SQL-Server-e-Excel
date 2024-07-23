@@ -83,9 +83,9 @@ Após a criação da view VENDAS, os dados foram importados para o Excel utiliza
 ## Base de dados e tabbelas dinâmicas
 
 Para o desenvolvimento do Dashboard, desenvolvi uma nova planilha ("TABELAS") contendo tabelas dinâmicas sincronizadas com a base de dados ("DADOS").
-![Base de dados]()
+![Base de dados](img/base de dados.png)
 
-![Tabelas Dinâmicas]()
+![Tabelas Dinâmicas](img/tabelas_dinamicas.png)
 
 ## Dashboard Resultante
 
