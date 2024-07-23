@@ -1,4 +1,4 @@
-# Análise de vendas - SQL, Excel, Tabelas dinâmicas e Dashboard
+# Análise de vendas - SQL, Excel, Tabelas Dinâmicas e Dashboard
 
 ## Apresentação
 
