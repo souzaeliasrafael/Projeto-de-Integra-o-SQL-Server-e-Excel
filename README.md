@@ -80,6 +80,13 @@ WHERE
 
 Após a criação da view VENDAS, os dados foram importados para o Excel utilizando ferramentas como Microsoft Query ou Power Query. No Excel, foram criadas tabelas dinâmicas, gráficos e outros recursos para analisar os indicadores de vendas definidos no projeto.
 
+## Base de dados e tabbelas dinâmicas
+
+Para o desenvolvimento do Dashboard, desenvolvi uma nova planilha ("TABELAS") contendo tabelas dinâmicas sincronizadas com a base de dados ("DADOS").
+![Base de dados]()
+
+![Tabelas Dinâmicas]()
+
 ## Dashboard Resultante
 
 ![Dashboard de Vendas](img/dashboard_completo.png)
